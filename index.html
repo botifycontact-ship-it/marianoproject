@@ -55,21 +55,6 @@ body {
 /* ── HEADER ── */
 header { display: flex; flex-direction: column; align-items: center; padding: 80px 0 60px; text-align: center; }
 
-.logo-wrap {
-  width: 88px; height: 88px; border-radius: 50%;
-  background: #ffffff;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden; flex-shrink: 0;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 20px 60px rgba(0,0,0,0.6), 0 0 80px rgba(94,174,255,0.25);
-  margin-bottom: 36px;
-  animation: fadeDown 0.8s ease both;
-}
-.logo-wrap img {
-  width: 88px; height: 88px;
-  object-fit: cover; object-position: center;
-  display: block;
-}
-
 .eyebrow {
   font-size: 0.65rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
   color: var(--gold); margin-bottom: 18px; animation: fadeDown 0.8s 0.1s ease both;
@@ -89,7 +74,6 @@ h1 em { font-style: italic; color: var(--accent); }
 /* ── LAYOUT ── */
 .main-grid { display: grid; grid-template-columns: 1fr 360px; gap: 32px; align-items: start; }
 
-/* ── SECTION LABEL ── */
 .section-label {
   font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
   color: var(--muted); font-weight: 500; margin-bottom: 20px;
@@ -97,211 +81,48 @@ h1 em { font-style: italic; color: var(--accent); }
 }
 .section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--glass-border), transparent); }
 
-/* ── CARDS ── */
 .options-col { display: flex; flex-direction: column; gap: 12px; }
 .card {
   background: var(--glass); border: 1px solid var(--glass-border);
   border-radius: 20px; padding: 28px 30px; cursor: pointer;
-  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, transform 0.2s ease;
+  transition: all 0.35s ease;
   display: flex; align-items: flex-start; gap: 22px;
   position: relative; overflow: hidden;
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-  animation: fadeUp 0.6s ease both;
 }
-.card::before {
-  content: ''; position: absolute; inset: 0; border-radius: 20px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
-  pointer-events: none;
-}
-.card:hover { background: var(--glass-hover); transform: translateY(-1px); }
 .card.active {
   background: rgba(94,174,255,0.07); border-color: rgba(94,174,255,0.45);
-  box-shadow: 0 0 0 1px rgba(94,174,255,0.15) inset, 0 20px 60px rgba(94,174,255,0.07);
 }
-.card.active::before { background: linear-gradient(135deg, rgba(94,174,255,0.06) 0%, transparent 60%); }
-.card.main-service { border-color: rgba(94,174,255,0.5); box-shadow: 0 0 40px rgba(94,174,255,0.08); }
 
 /* checkbox */
 .cb {
   width: 26px; height: 26px; flex-shrink: 0;
   border: 1.5px solid rgba(255,255,255,0.2); border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
-  transition: all 0.3s ease; margin-top: 3px;
 }
-.card.active .cb { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 20px rgba(94,174,255,0.4); }
-.cb svg { opacity: 0; transform: scale(0.5); transition: all 0.25s ease; }
-.card.active .cb svg { opacity: 1; transform: scale(1); }
+.card.active .cb { background: var(--accent); border-color: var(--accent); }
+.cb svg { opacity: 0; transition: all 0.25s ease; }
+.card.active .cb svg { opacity: 1; }
 
-/* card body */
-.card-body { flex: 1; min-width: 0; }
-.card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
-.card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--white); line-height: 1.2; }
-.card-price { font-size: 0.85rem; font-weight: 500; color: var(--accent); letter-spacing: 0.05em; white-space: nowrap; padding-top: 3px; }
-.card-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
-
-/* feature pills */
-.feat-list {
-  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px;
-}
-.feat-pill {
-  font-size: 0.68rem; letter-spacing: 0.06em;
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 100px; padding: 4px 10px; color: var(--muted);
-  display: flex; align-items: center; gap: 5px;
-}
-.feat-pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
-
-/* extras row */
-.extras-row {
-  margin-top: 14px; padding-top: 14px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  display: flex; flex-wrap: wrap; gap: 8px;
-}
-.extra-chip {
-  font-size: 0.7rem; color: rgba(201,169,110,0.85);
-  background: rgba(201,169,110,0.06); border: 1px solid rgba(201,169,110,0.18);
-  border-radius: 8px; padding: 5px 10px; line-height: 1.4;
-}
-
-/* note tag */
-.note-tag {
-  margin-top: 12px; font-size: 0.7rem; color: rgba(201,169,110,0.8);
-  background: rgba(201,169,110,0.05); border: 1px solid rgba(201,169,110,0.14);
-  border-radius: 8px; padding: 8px 12px; line-height: 1.5;
-}
-
-/* ── BOT TOGGLE ── */
-.bot-toggle-wrap {
-  display: flex; gap: 6px; background: rgba(255,255,255,0.04);
-  border: 1px solid var(--glass-border); border-radius: 12px;
-  padding: 4px; margin-bottom: 16px; width: fit-content;
-}
-.bot-tab {
-  padding: 7px 18px; background: none; border: none; border-radius: 9px;
-  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500;
-  color: var(--muted); cursor: pointer; transition: all 0.25s ease;
-}
-.bot-tab.active { background: var(--accent); color: #fff; box-shadow: 0 4px 14px rgba(94,174,255,0.35); }
-
-/* bot pricing grid */
-.bot-pricing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
-.bpi {
-  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 12px; padding: 14px 16px;
-  display: flex; flex-direction: column; gap: 3px; transition: all 0.2s ease;
-}
-.bpi:hover { background: rgba(255,255,255,0.06); }
-.bpi.hi { background: rgba(94,174,255,0.07); border-color: rgba(94,174,255,0.3); }
-.bpi-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
-.bpi-val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--white); line-height: 1.1; }
-.bpi.hi .bpi-val { color: var(--accent); }
-.bpi-note { font-size: 0.67rem; color: var(--muted); line-height: 1.3; }
-
-/* ── SHIPS ── */
-.ships-section { margin-top: 40px; }
-.ships-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.ship-card {
-  background: var(--glass); border: 1px solid var(--glass-border);
-  border-radius: 16px; padding: 20px; transition: all 0.3s ease;
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-}
-.ship-card:hover { background: var(--glass-hover); border-color: rgba(255,255,255,0.15); }
-.ship-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
-.ship-tagline { font-size: 0.74rem; color: var(--muted); line-height: 1.4; margin-bottom: 14px; }
-.ship-specs { display: flex; flex-direction: column; gap: 4px; margin-bottom: 14px; }
-.spec-row { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--muted); padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-.spec-row span:last-child { color: var(--text); }
-.ship-expand {
-  font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--accent); display: flex; align-items: center; gap: 6px;
-  cursor: pointer; background: none; border: none; padding: 0; font-family: inherit;
-}
-.ship-expand svg { transition: transform 0.3s ease; }
-.ship-card.open .ship-expand svg { transform: rotate(180deg); }
-.ship-detail { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.4s ease; opacity: 0; }
-.ship-card.open .ship-detail { max-height: 700px; opacity: 1; margin-top: 14px; }
-.detail-section { margin-bottom: 12px; }
-.detail-section h4 { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; font-weight: 500; }
-.detail-section ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.detail-section li { font-size: 0.74rem; color: var(--muted); padding-left: 14px; position: relative; line-height: 1.4; }
-.detail-section li::before { content: '—'; position: absolute; left: 0; color: rgba(94,174,255,0.4); font-size: 0.6rem; }
+.card-body { flex: 1; }
+.card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; color: var(--white); }
+.card-price { font-size: 0.85rem; color: var(--accent); font-weight: 500; }
+.card-desc { font-size: 0.84rem; color: var(--muted); margin: 8px 0 14px; line-height: 1.6; }
 
 /* ── SUMMARY ── */
 .summary-card {
   position: sticky; top: 32px;
   background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
   border-radius: 24px; padding: 40px 36px;
-  backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
-  box-shadow: 0 40px 80px rgba(0,0,0,0.4);
-  animation: fadeUp 0.6s 0.4s ease both;
+  backdrop-filter: blur(30px);
 }
-.summary-card::before {
-  content: ''; position: absolute; inset: 0; border-radius: 24px; pointer-events: none;
-  background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, transparent 50%);
-}
-.sum-label { font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 8px; }
-.sum-total { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; line-height: 1; color: var(--white); margin-bottom: 6px; transition: color 0.4s ease; }
-.sum-total sup { font-size: 1.4rem; vertical-align: super; margin-right: 4px; color: var(--accent); }
-.sum-note { font-size: 0.75rem; color: var(--muted); margin-bottom: 28px; }
-.sum-items { margin-bottom: 28px; display: flex; flex-direction: column; }
-.sum-item {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
-  font-size: 0.82rem; transition: all 0.3s ease;
-}
-.sum-item.inactive { opacity: 0.28; }
-.sum-item-name { color: var(--muted); }
-.sum-item.active .sum-item-name { color: var(--text); }
-.sum-item-val { color: var(--accent); font-weight: 500; }
-.sum-item.inactive .sum-item-val { color: var(--muted); }
-.sum-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 4px 0 14px; }
-.sum-total-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.85rem; margin-bottom: 28px; }
-.sum-total-row .val { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; color: var(--white); }
-.cta-btn {
-  display: block; width: 100%; padding: 18px;
-  background: var(--white); color: #010a14;
-  font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500;
-  letter-spacing: 0.15em; text-transform: uppercase;
-  text-decoration: none; text-align: center; border-radius: 14px;
-  border: none; cursor: pointer; transition: all 0.35s ease; margin-bottom: 12px;
-}
-.cta-btn:hover { background: var(--accent); color: #fff; box-shadow: 0 16px 40px rgba(94,174,255,0.3); transform: translateY(-1px); }
-.cta-secondary {
-  display: block; width: 100%; text-align: center; font-size: 0.75rem; color: var(--muted);
-  cursor: pointer; background: none; border: none; font-family: inherit;
-  padding: 8px; text-decoration: underline; text-underline-offset: 3px;
-}
-.sum-legal { font-size: 0.67rem; color: rgba(107,128,153,0.5); text-align: center; line-height: 1.6; margin-top: 18px; }
+.sum-total { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; color: var(--white); }
 
-/* ── BOT BREAKDOWN (inside option 3) ── */
-.bot-breakdown {
-  margin-top: 16px; padding-top: 14px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  margin-bottom: 4px;
-}
-.bot-bd-title {
-  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--muted); font-weight: 500; margin-bottom: 10px;
-}
-
-/* ── ANIMATIONS ── */
 @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeUp   { from { opacity: 0; transform: translateY(24px);  } to { opacity: 1; transform: translateY(0); } }
 
-/* ── FOOTER ── */
-.footer-line { text-align: center; padding-top: 60px; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(107,128,153,0.35); }
-
-/* ── RESPONSIVE ── */
 @media (max-width: 860px) {
-  .page { padding: 0 20px 80px; }
   .main-grid { grid-template-columns: 1fr; }
-  .summary-card { position: static; }
-  .ships-grid { grid-template-columns: 1fr 1fr; }
-  h1 { font-size: 2.5rem; }
-}
-@media (max-width: 560px) {
-  .ships-grid { grid-template-columns: 1fr; }
-  .bot-pricing-grid { grid-template-columns: 1fr 1fr; }
+  .summary-card { position: static; margin-top: 40px; }
 }
 </style>
 </head>
@@ -313,414 +134,58 @@ h1 em { font-style: italic; color: var(--accent); }
 
 <div class="page">
 
-  <!-- ── HEADER ── -->
   <header>
-    <div class="logo-wrap">
-      <img
-        src="https://res.cloudinary.com/ddjl4shzl/image/upload/v1771353537/SeaMoments-logo_t6xkh7.png"
-        alt="Sea Moments"
-        onload="this.style.opacity=1"
-        onerror="this.parentElement.innerHTML='<span style=\'font-family:serif;font-size:0.6rem;color:#010a14;font-weight:700;text-align:center;letter-spacing:0.05em;\'>SEA<br>MOMENTS</span>'"
-        style="opacity:0;transition:opacity 0.4s ease;"
-      >
-    </div>
     <p class="eyebrow">Sea Moments × EOLO Marine — Ecosistema Digital 2026</p>
     <h1>Tu inversión,<br><em>configurada.</em></h1>
     <p class="header-sub">Elige el paquete que necesitas y construye tu presupuesto en tiempo real. Precios claros, sin letra pequeña.</p>
   </header>
 
-  <!-- ── MAIN GRID ── -->
   <div class="main-grid">
     <div>
-
-      <!-- PAQUETES — 3 opciones radio -->
       <div class="section-label">Elige tu paquete</div>
       <div class="options-col">
-
-        <!-- OPCIÓN 1 — PDF 400 -->
-        <div class="card" data-price="400" onclick="selectPack(this,0)">
+        
+        <div class="card" onclick="updateTotal(400, this)">
           <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div class="card-body">
-            <div class="card-head">
-              <span class="card-title">📄 Opción 1 — PDF para Imprimir</span>
-              <span class="card-price">400 €</span>
-            </div>
-            <p class="card-desc">Catálogo editorial listo para imprenta. Diseño 16:9, 13 páginas con los 6 modelos EOLO, fichas técnicas completas y QR por barco. Todo el texto, estructura y maquetación bajo el branding y diseño de la marca.</p>
-            <div class="feat-list">
-              <span class="feat-pill"><span class="dot"></span>13 páginas diseñadas</span>
-              <span class="feat-pill"><span class="dot"></span>6 fichas técnicas</span>
-              <span class="feat-pill"><span class="dot"></span>QR por barco</span>
-              <span class="feat-pill"><span class="dot"></span>300 DPI imprenta offset</span>
-              <span class="feat-pill"><span class="dot"></span>Branding y textos de marca</span>
-              <span class="feat-pill"><span class="dot"></span>2 rondas de revisión</span>
-              <span class="feat-pill"><span class="dot"></span>Entrega 7 días hábiles</span>
-            </div>
-            <div class="extras-row">
-              <span class="extra-chip">➕ Traducción completa adicional: 50 €/idioma</span>
-              <span class="extra-chip">➕ Animaciones PDF interactivo: consultar</span>
-            </div>
+            <span class="card-title">📄 Opción 1 — PDF para Imprimir</span>
+            <div class="card-price">400 €</div>
+            <p class="card-desc">Catálogo editorial listo para imprenta. Diseño 16:9, 13 páginas con los 6 modelos EOLO y fichas técnicas.</p>
           </div>
         </div>
 
-        <!-- OPCIÓN 2 — PDF + Interfaz 900 -->
-        <div class="card active main-service" data-price="900" onclick="selectPack(this,1)">
+        <div class="card active" onclick="updateTotal(900, this)">
           <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div class="card-body">
-            <div class="card-head">
-              <span class="card-title">🌐 Opción 2 — PDF + Interfaz Digital</span>
-              <span class="card-price">900 €</span>
-            </div>
-            <p class="card-desc">Todo lo de la Opción 1, más un microsite web profesional para feria o showroom. Incluye 1 foto por barco, todo el texto bajo el branding de la marca, galería interactiva, fichas descargables y experiencia optimizada para tablet en stand y móvil. ES + EN incluidos de serie; cada traducción adicional de página completa son 50 € extra.</p>
-            <div class="feat-list">
-              <span class="feat-pill"><span class="dot"></span>Todo lo de Opción 1</span>
-              <span class="feat-pill"><span class="dot"></span>Microsite a medida</span>
-              <span class="feat-pill"><span class="dot"></span>1 foto por barco</span>
-              <span class="feat-pill"><span class="dot"></span>ES + EN incluidos</span>
-              <span class="feat-pill"><span class="dot"></span>Branding y textos de marca</span>
-              <span class="feat-pill"><span class="dot"></span>Formulario de leads</span>
-              <span class="feat-pill"><span class="dot"></span>Hosting 3 meses</span>
-              <span class="feat-pill"><span class="dot"></span>Analítica básica</span>
-              <span class="feat-pill"><span class="dot"></span>Entrega 10 días hábiles</span>
-            </div>
-            <div class="extras-row">
-              <span class="extra-chip">➕ Traducción adicional página completa: 50 €/idioma</span>
-              <span class="extra-chip">➕ Animaciones web: consultar</span>
-              <span class="extra-chip">➕ Fotos adicionales por barco: consultar</span>
-            </div>
-            <div class="note-tag">⭐ Más popular — base perfecta para combinar con el Bot de la Opción 3</div>
+            <span class="card-title">🌐 Opción 2 — PDF + Interfaz Digital</span>
+            <div class="card-price">900 €</div>
+            <p class="card-desc">Microsite web profesional para feria + Catálogo PDF. Experiencia optimizada para tablet y móvil.</p>
           </div>
         </div>
 
-        <!-- OPCIÓN 3 — Todo incluido + Bot 1300 -->
-        <div class="card" data-price="1300" onclick="selectPack(this,2)">
-          <div class="cb"><svg width="12" height="9" viewBox="0 0 12 9" fill="none"><path d="M1 4L4.5 7.5L11 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div class="card-body">
-            <div class="card-head">
-              <span class="card-title">🚀 Opción 3 — Todo incluido + Bot</span>
-              <span class="card-price">1.300 €</span>
-            </div>
-            <p class="card-desc">El ecosistema completo. Todo lo de la Opción 2 más el Bot Inteligente WhatsApp activo durante la feria: resuelve dudas, envía links y fichas PDF al instante, y dirige cada lead directamente al WhatsApp del manager de flota en tiempo real.</p>
-
-            <div class="feat-list">
-              <span class="feat-pill"><span class="dot"></span>Todo lo de Opción 1 y 2</span>
-              <span class="feat-pill"><span class="dot"></span>Bot WhatsApp activo en feria</span>
-              <span class="feat-pill"><span class="dot"></span>Resolución de dudas técnicas</span>
-              <span class="feat-pill"><span class="dot"></span>Envío de links y fichas PDF</span>
-              <span class="feat-pill"><span class="dot"></span>Lead directo al manager de flota</span>
-              <span class="feat-pill"><span class="dot"></span>Panel de leads Google Sheets</span>
-              <span class="feat-pill"><span class="dot"></span>QR de acceso para el stand</span>
-            </div>
-
-            <!-- Desglose de precios del bot -->
-            <div class="bot-breakdown">
-              <p class="bot-bd-title">Desglose del Bot por duración de feria</p>
-              <div class="bot-pricing-grid">
-                <div class="bpi">
-                  <span class="bpi-label">Set up único</span>
-                  <span class="bpi-val">390 €</span>
-                  <span class="bpi-note">Config., flujos, QR, pruebas y formación</span>
-                </div>
-                <div class="bpi">
-                  <span class="bpi-label">Precio por día</span>
-                  <span class="bpi-val">185 €</span>
-                  <span class="bpi-note">Operativa diaria + soporte en directo</span>
-                </div>
-                <div class="bpi hi">
-                  <span class="bpi-label">5 días de feria</span>
-                  <span class="bpi-val">1.300 €</span>
-                  <span class="bpi-note">Set up + 5 días · precio cerrado total</span>
-                </div>
-                <div class="bpi">
-                  <span class="bpi-label">7 días de feria</span>
-                  <span class="bpi-val">1.680 €</span>
-                  <span class="bpi-note">Set up + 7 días · precio cerrado total</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="extras-row">
-              <span class="extra-chip">➕ Traducción adicional: 50 €/idioma</span>
-              <span class="extra-chip">➕ Idiomas bot extra: +80 €/idioma</span>
-              <span class="extra-chip">➕ Animaciones web: consultar</span>
-            </div>
-            <div class="note-tag">⚡ Bot activo solo durante la feria — para uso continuado fuera de feria, consultar precio · Requiere WhatsApp Business API</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- FLOTA -->
-      <div class="ships-section">
-        <div class="section-label" style="margin-top: 40px;">Flota incluida en el catálogo</div>
-        <div class="ships-grid">
-
-          <div class="ship-card">
-            <div class="ship-name">EOLO NOVE</div>
-            <p class="ship-tagline">Diseño italiano de alto nivel. Casco en V profunda para navegación estable y confortable en condiciones exigentes.</p>
-            <div class="ship-specs">
-              <div class="spec-row"><span>Eslora</span><span>9 m aprox.</span></div>
-              <div class="spec-row"><span>Cabina</span><span>Doble + aft cabin</span></div>
-              <div class="spec-row"><span>Combustible</span><span>540 L</span></div>
-            </div>
-            <button class="ship-expand" onclick="toggleShip(this)">Ver equipamiento <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5eaeff" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="ship-detail">
-              <div class="detail-section">
-                <h4>Exterior</h4>
-                <ul>
-                  <li>Consola lateral con asiento piloto y solárium convertible en dinette</li>
-                  <li>Cocina exterior con fregadero, inducción y frigorífico 49 L</li>
-                  <li>Parabrisas panorámico, ducha exterior de popa, escalera baño inox</li>
-                  <li>Mesa y asientos exteriores con cojines</li>
-                </ul>
-              </div>
-              <div class="detail-section">
-                <h4>Interior</h4>
-                <ul>
-                  <li>Cabina con cama doble en proa convertible en sofá/dinette</li>
-                  <li>Baño completo con lavabo, ducha separada e inodoro eléctrico</li>
-                  <li>Aft cabin con dos literas; suelo de madera laminada y cortinas</li>
-                </ul>
-              </div>
-              <div class="detail-section">
-                <h4>Sistemas y opciones</h4>
-                <ul>
-                  <li>Sistema eléctrico 12 V, depósito 540 L, molinete eléctrico</li>
-                  <li>T-Top en fibra de vidrio, GPS 12", VHF, TV en cabina</li>
-                  <li>Aire acondicionado 600 BTU, boiler 20 L, hélice de proa</li>
-                  <li>Flaps automáticos, 2 luces subacuáticas, Gelcoat personalizado</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="ship-card">
-            <div class="ship-name">EOLO 7.9</div>
-            <p class="ship-tagline">Equilibrio perfecto entre deportividad, confort y elegancia. Ideal para salidas familiares en el Mediterráneo.</p>
-            <div class="ship-specs">
-              <div class="spec-row"><span>Eslora</span><span>7.9 m</span></div>
-              <div class="spec-row"><span>Motor</span><span>Fueraborda recomendado</span></div>
-              <div class="spec-row"><span>Cubierta popa</span><span>Teca sintética</span></div>
-            </div>
-            <button class="ship-expand" onclick="toggleShip(this)">Ver equipamiento <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5eaeff" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="ship-detail">
-              <div class="detail-section">
-                <h4>Estándar</h4>
-                <ul>
-                  <li>Casco blanco, cojines beige, solárium de proa</li>
-                  <li>Nevera, fregadero exterior, sistema de agua y ducha 67 L</li>
-                  <li>Brújula, bocina, luces navegación, toma 12 V, plataforma teca sintética</li>
-                </ul>
-              </div>
-              <div class="detail-section">
-                <h4>Opciones</h4>
-                <ul>
-                  <li>Color total con teca sintética, flaps automáticos, hélice de proa</li>
-                  <li>Roll-bar inox/negro con toldo, WC marino eléctrico, molinete eléctrico</li>
-                  <li>Cocina de inducción + Inverter, dirección hidráulica, estéreo 4 altavoces</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="ship-card">
-            <div class="ship-name">EOLO 6.9 EL</div>
-            <p class="ship-tagline">6,90 m versátil para hasta 7 personas. Amplio solárium y distribución perfecta para cruceros costeros.</p>
-            <div class="ship-specs">
-              <div class="spec-row"><span>Eslora</span><span>6.9 m</span></div>
-              <div class="spec-row"><span>Capacidad</span><span>7 personas</span></div>
-              <div class="spec-row"><span>Uso</span><span>Recreativo / Costero</span></div>
-            </div>
-            <button class="ship-expand" onclick="toggleShip(this)">Ver equipamiento <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5eaeff" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="ship-detail">
-              <div class="detail-section">
-                <h4>Estándar</h4>
-                <ul>
-                  <li>Casco blanco, cojinería beige, solárium de proa, parabrisas inox</li>
-                  <li>Bollardos, plataformas de popa, escalera baño inox, bomba achique</li>
-                  <li>Luces navegación y fondeo 360°, brújula, bocina, toma 12 V</li>
-                </ul>
-              </div>
-              <div class="detail-section">
-                <h4>Opciones</h4>
-                <ul>
-                  <li>Cocina a gas, nevera, sistema de agua y ducha, fregadero</li>
-                  <li>Bimini inox 3 o 4 arcos, toldo de bañera, lona de fondeo</li>
-                  <li>Correctores Zip Wake, dirección hidráulica, molinete eléctrico, WC químico</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="ship-card">
-            <div class="ship-name">EOLO 6.4 EL</div>
-            <p class="ship-tagline">Crucero compacto con cabina. Elegante y eficiente para escapadas cortas hasta 7 personas.</p>
-            <div class="ship-specs">
-              <div class="spec-row"><span>Eslora</span><span>6.4 m</span></div>
-              <div class="spec-row"><span>Capacidad</span><span>7 personas</span></div>
-              <div class="spec-row"><span>Tipo</span><span>Crucero con cabina</span></div>
-            </div>
-            <button class="ship-expand" onclick="toggleShip(this)">Ver equipamiento <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5eaeff" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="ship-detail">
-              <div class="detail-section">
-                <h4>Estándar</h4>
-                <ul>
-                  <li>Casco blanco, solárium proa y popa extendido, rodillo de proa</li>
-                  <li>Cornamusas, pasamanos inox, cojinería beige, escalera baño inox</li>
-                  <li>Brújula, bocina, luces fondeo 360°, bomba achique, toma 12 V</li>
-                </ul>
-              </div>
-              <div class="detail-section">
-                <h4>Opciones</h4>
-                <ul>
-                  <li>Banda de color, color total, cojinería personalizada</li>
-                  <li>Cocina/fogón, frigorífico, sistema de agua y ducha, grifo y lavabo</li>
-                  <li>Bimini 4 arcos, plataforma Flexiteek, dirección hidráulica, WC químico</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="ship-card">
-            <div class="ship-name">EOLO 6.4 OPEN</div>
-            <p class="ship-tagline">Open deportivo 6,40 m para hasta 8 personas. Distribución espaciosa y hasta 150 CV de propulsión.</p>
-            <div class="ship-specs">
-              <div class="spec-row"><span>Eslora</span><span>6.4 m</span></div>
-              <div class="spec-row"><span>Capacidad</span><span>8 personas</span></div>
-              <div class="spec-row"><span>Motor máx.</span><span>150 CV fueraborda</span></div>
-            </div>
-            <button class="ship-expand" onclick="toggleShip(this)">Ver equipamiento <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5eaeff" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="ship-detail">
-              <div class="detail-section">
-                <h4>Estándar</h4>
-                <ul>
-                  <li>Casco blanco, cojines beige, parabrisas, escalera baño inox</li>
-                  <li>Bocina, toma 12 V, luces navegación y fondeo 360°, bomba achique</li>
-                </ul>
-              </div>
-              <div class="detail-section">
-                <h4>Opciones</h4>
-                <ul>
-                  <li>Banda o coloración total de casco, cocina exterior, nevera</li>
-                  <li>Sistema de agua y ducha, extensión solárium, bimini 3 o 4 arcos</li>
-                  <li>Dirección hidráulica, molinete eléctrico, sonido 2 altavoces</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="ship-card">
-            <div class="ship-name">AS MARINE 19</div>
-            <p class="ship-tagline">Open 5,70 m con estilo mediterráneo. Ágil y funcional para salidas familiares con hasta 7 personas y 115 CV.</p>
-            <div class="ship-specs">
-              <div class="spec-row"><span>Eslora</span><span>5.70 m</span></div>
-              <div class="spec-row"><span>Capacidad</span><span>7 personas</span></div>
-              <div class="spec-row"><span>Motor máx.</span><span>115 CV fueraborda</span></div>
-            </div>
-            <button class="ship-expand" onclick="toggleShip(this)">Ver equipamiento <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#5eaeff" stroke-width="1.5" stroke-linecap="round"/></svg></button>
-            <div class="ship-detail">
-              <div class="detail-section">
-                <h4>Estándar</h4>
-                <ul>
-                  <li>Casco blanco, cojinería beige completa, solárium amplio de proa</li>
-                  <li>Rodillo de proa, cornamusas, pasamanos inox, asientos en popa</li>
-                  <li>Parabrisas, escalera baño inox, brújula, bocina, luces, toma 12 V</li>
-                </ul>
-              </div>
-              <div class="detail-section">
-                <h4>Opciones</h4>
-                <ul>
-                  <li>Banda de color o color total con Flexiteek en cubierta</li>
-                  <li>Sistema de agua y ducha 39 L, sonido 2 altavoces, pie de mesa</li>
-                  <li>Toldo aluminio, bimini inox 3 arcos, plataforma y escalón Flexiteek</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
       </div>
     </div>
 
-    <!-- ── SUMMARY ── -->
-    <div class="summary-card">
-      <p class="sum-label">Inversión total estimada</p>
-      <div class="sum-total"><sup>€</sup><span id="totalNum">900</span></div>
-      <p class="sum-note">Actualizado en tiempo real · Sin IVA</p>
-
-      <div class="sum-items">
-        <div class="sum-item inactive" id="item-0">
-          <span class="sum-item-name">📄 Opción 1 — PDF</span>
-          <span class="sum-item-val">400 €</span>
-        </div>
-        <div class="sum-item active" id="item-1">
-          <span class="sum-item-name">🌐 Opción 2 — PDF + Web</span>
-          <span class="sum-item-val">900 €</span>
-        </div>
-        <div class="sum-item inactive" id="item-2">
-          <span class="sum-item-name">🚀 Opción 3 — Todo + Bot</span>
-          <span class="sum-item-val">1.300 €</span>
-        </div>
-        <div class="sum-divider"></div>
-        <div class="sum-total-row">
-          <span style="color: var(--muted); font-size:0.78rem;">Total sin IVA</span>
-          <span class="val" id="totalDisplay">900 €</span>
-        </div>
+    <aside>
+      <div class="summary-card">
+        <div class="section-label">Tu Presupuesto</div>
+        <div class="sum-total" id="total-display">900€</div>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-top: 10px;">IVA no incluido. Validez: 30 días.</p>
+        <button style="width:100%; padding:15px; margin-top:20px; border-radius:10px; border:none; background:var(--white); cursor:pointer; font-weight:600;">SOLICITAR FORMALMENTE</button>
       </div>
-
-      <a href="https://wa.me/34600000000?text=He%20configurado%20mi%20presupuesto%20Sea%20Moments%202026" class="cta-btn">Confirmar selección</a>
-      <button class="cta-secondary" onclick="alert('Solicitar llamada — próximamente.')">Prefiero una llamada</button>
-      <p class="sum-legal">Precios sin IVA. Selecciona la opción que mejor se adapte. Para uso del Bot fuera de feria, consultar precio.</p>
-    </div>
-
+    </aside>
   </div>
-
-  <div class="footer-line">Sea Moments × EOLO Marine &nbsp;·&nbsp; Propuesta Exclusiva 2026</div>
 </div>
 
 <script>
-// 3 opciones radio — solo una puede estar activa a la vez
-// 0 = Opción 1 (PDF 400), 1 = Opción 2 (PDF+Web 900), 2 = Opción 3 (Todo+Bot 1300)
-const PRICES = [400, 900, 1300];
-let activeIdx = 1; // Opción 2 activa por defecto
-
-const cards = document.querySelectorAll('.card');
-const items = [
-  document.getElementById('item-0'),
-  document.getElementById('item-1'),
-  document.getElementById('item-2'),
-];
-
-function selectPack(el, idx) {
-  if (activeIdx === idx) return; // ya está activo
-  activeIdx = idx;
-  renderSummary();
+function updateTotal(price, element) {
+    // Quitar clase active de todos
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    // Añadir al seleccionado
+    element.classList.add('active');
+    // Actualizar texto
+    document.getElementById('total-display').innerText = price + '€';
 }
-
-function renderSummary() {
-  cards.forEach((card, i) => {
-    if (i === activeIdx) {
-      card.classList.add('active');
-      items[i].className = 'sum-item active';
-    } else {
-      card.classList.remove('active');
-      items[i].className = 'sum-item inactive';
-    }
-  });
-  const total = PRICES[activeIdx];
-  document.getElementById('totalNum').textContent     = total.toLocaleString('es-ES');
-  document.getElementById('totalDisplay').textContent = total.toLocaleString('es-ES') + ' €';
-  // flash accent
-  const el = document.querySelector('.sum-total');
-  el.style.color = 'var(--accent)';
-  setTimeout(() => el.style.color = 'var(--white)', 400);
-}
-
-function toggleShip(btn) {
-  btn.closest('.ship-card').classList.toggle('open');
-}
-
-// Init
-renderSummary();
 </script>
 
 </body>
