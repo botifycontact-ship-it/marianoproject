@@ -24,7 +24,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* GRID BACKGROUND DINÁMICO */
         .grid-canvas {
             position: fixed; inset: 0;
             background-image: 
@@ -33,7 +32,7 @@
             background-size: 80px 80px;
             mask-image: radial-gradient(circle at center, black, transparent 80%);
             z-index: -1;
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; }
@@ -49,9 +48,9 @@
         }
 
         .logo-frame {
-            width: 140px; height: 140px;
+            width: 160px; height: 160px;
             background: #fff; border-radius: 50%;
-            padding: 20px; margin-bottom: 40px;
+            padding: 25px; margin-bottom: 40px;
             display: flex; align-items: center; justify-content: center;
             box-shadow: 0 0 60px rgba(0, 163, 255, 0.3);
             animation: float 6s ease-in-out infinite;
@@ -60,22 +59,54 @@
 
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-        h1 { font-size: 5rem; font-weight: 800; letter-spacing: -3px; line-height: 0.9; margin-bottom: 24px; }
+        h1 { font-size: 5.5rem; font-weight: 800; letter-spacing: -4px; line-height: 0.9; margin-bottom: 24px; }
         .badge {
             background: rgba(0, 163, 255, 0.1); border: 1px solid var(--accent-blue);
             color: var(--accent-blue); padding: 8px 24px; border-radius: 100px;
             font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
         }
 
-        /* SECCIONES DE ESTRATEGIA VISUAL */
         .block { padding: 120px 0; opacity: 0; transform: translateY(50px); transition: all 1s ease-out; }
         .block.visible { opacity: 1; transform: translateY(0); }
 
-        .section-header { margin-bottom: 60px; max-width: 800px; }
-        .section-header h2 { font-size: 3rem; margin-bottom: 20px; color: var(--accent-blue); }
+        .section-header { margin-bottom: 60px; max-width: 900px; }
+        .section-header h2 { font-size: 3.5rem; margin-bottom: 20px; color: var(--accent-blue); letter-spacing: -2px; }
         .section-header p { font-size: 1.25rem; color: var(--text-dim); }
 
-        /* GRID DE FLOTA - 2 FILAS x 3 COLUMNAS */
+        /* PRICING TABLE PREMIUM */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .price-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 32px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s;
+        }
+        .price-card:hover { border-color: var(--accent-blue); background: rgba(0, 163, 255, 0.05); }
+        .price-card.featured { border: 2px solid var(--accent-blue); position: relative; }
+        .price-card.featured::after {
+            content: "RECOMENDADO"; position: absolute; top: -15px; left: 50%;
+            transform: translateX(-50%); background: var(--accent-blue); color: #000;
+            padding: 5px 20px; border-radius: 20px; font-size: 0.7rem; font-weight: 900;
+        }
+
+        .price-card h3 { font-size: 2rem; margin-bottom: 10px; }
+        .price-card .cost { font-size: 3rem; font-weight: 800; margin: 30px 0; }
+        .price-card .cost span { font-size: 1.2rem; color: var(--accent-blue); }
+        
+        .price-card ul { list-style: none; margin-bottom: 40px; }
+        .price-card li { margin-bottom: 15px; color: var(--text-dim); display: flex; align-items: center; gap: 10px; }
+        .price-card li::before { content: "✓"; color: var(--accent-blue); font-weight: bold; }
+
+        /* FLOTA EN 2 FILAS DE 3 COLUMNAS */
         .fleet-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -88,43 +119,24 @@
             border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 40px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            transition: 0.4s;
         }
-        .fleet-card:hover {
-            background: rgba(0, 163, 255, 0.08);
-            border-color: var(--accent-blue);
-            transform: translateY(-10px);
-        }
+        .fleet-card h3 { font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 10px; }
+        .fleet-card .meta { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; display: block; }
+        .fleet-card p { font-size: 0.9rem; line-height: 1.6; color: var(--text-dim); }
 
-        .fleet-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
-        .fleet-card .meta { color: var(--accent-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 20px; display: block; }
-        
-        .asset-desc { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 25px; line-height: 1.6; }
-        
-        .asset-tag {
-            display: inline-flex; align-items: center; gap: 8px;
-            font-size: 0.75rem; background: rgba(255,255,255,0.05);
-            padding: 6px 12px; border-radius: 6px; color: #fff;
-        }
-
-        /* FOOTER PREMIUM */
+        /* FOOTER */
         footer { padding: 100px 0; border-top: 1px solid var(--border-color); text-align: center; }
-        .cta-premium {
-            padding: 24px 60px; background: #fff; color: #000;
-            font-weight: 800; border-radius: 12px; text-decoration: none;
+        .cta-btn {
+            padding: 24px 80px; background: #fff; color: #000;
+            font-weight: 800; border-radius: 100px; text-decoration: none;
             font-size: 1.2rem; transition: 0.3s; display: inline-block;
         }
-        .cta-premium:hover { background: var(--accent-blue); color: #fff; box-shadow: 0 0 50px rgba(0, 163, 255, 0.5); }
+        .cta-btn:hover { background: var(--accent-blue); color: #fff; box-shadow: 0 0 50px rgba(0, 163, 255, 0.5); }
 
         @media (max-width: 1024px) {
-            .fleet-grid { grid-template-columns: repeat(2, 1fr); }
-            h1 { font-size: 3rem; }
-        }
-        @media (max-width: 768px) {
-            .fleet-grid { grid-template-columns: 1fr; }
-            .container { padding: 0 30px; }
+            .pricing-grid, .fleet-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
@@ -137,88 +149,116 @@
             <div class="logo-frame">
                 <img src="https://res.cloudinary.com/dxhef6dju/image/upload/v1755725396/ChatGPT_Image_Apr_16_2025_12_31_00_AM_pbed1s.png" alt="Sea Moments">
             </div>
-            <div class="badge">Ecosistema Digital 2026</div>
-            <h1>The Art of<br>Navigation.</h1>
-            <p style="color: var(--text-dim); max-width: 600px; margin-top: 20px; font-size: 1.2rem;">
-                Una interfaz diseñada para transformar la visualización técnica en una experiencia emocional de compra.
-            </p>
+            <div class="badge">Ecosistema Estratégico 2026</div>
+            <h1>Navigating<br>The Future.</h1>
         </section>
 
         <section class="block">
             <div class="section-header">
-                <h2>La Flota en Venta</h2>
-                <p>Cada embarcación cuenta con una sección dedicada diseñada bajo la "Regla de los 3 Impactos": Vídeo Cinematográfico, Detalle Técnico y Galería de Estilo de Vida.</p>
+                <h2>Opciones de Inversión</h2>
+                <p>Tres niveles de impacto diseñados para escalar la presencia de EOLO en el mercado internacional.</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <span class="badge">Editorial</span>
+                    <h3>Opción 1</h3>
+                    <div class="cost">650<span>€</span></div>
+                    <ul>
+                        <li>Diseño 16:9 listo para imprenta</li>
+                        <li>Retícula de 12 columnas</li>
+                        <li>6 modelos (13 páginas)</li>
+                        <li>QR individual por barco</li>
+                        <li>Exportación 300 DPI</li>
+                    </ul>
+                </div>
+
+                <div class="price-card featured">
+                    <span class="badge">Ecosistema</span>
+                    <h3>Opción 2</h3>
+                    <div class="cost">900<span>€</span></div>
+                    <ul>
+                        <li>Todo lo incluido en Opción 1</li>
+                        <li>Interfaz Digital Interactiva</li>
+                        <li>Multidioma avanzado (6 idiomas)</li>
+                        <li>Resolución estratégica de dudas</li>
+                        <li>Captura de Leads directa</li>
+                    </ul>
+                </div>
+
+                <div class="price-card">
+                    <span class="badge">Total Auto</span>
+                    <h3>Opción 3</h3>
+                    <div class="cost">1.300<span>€</span></div>
+                    <ul>
+                        <li>Todo lo incluido en Opción 2</li>
+                        <li>Bot Inteligente Feria Náutica</li>
+                        <li>Activación 5 días evento</li>
+                        <li>Envío automático fichas PDF</li>
+                        <li>Atención 24/7 WhatsApp</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="block">
+            <div class="section-header">
+                <h2>Distribución de la Flota</h2>
+                <p>Estructura de activos visuales para el catálogo y la interfaz digital.</p>
             </div>
 
             <div class="fleet-grid">
                 <div class="fleet-card">
-                    <span class="meta">PÁGINAS 2-3</span>
+                    <span class="meta">PÁGINAS 2-3 | RECURSO: VIDEO 4K</span>
                     <h3>EOLO NOVE</h3>
-                    <p class="asset-desc"><strong>Recurso:</strong> Vídeo 4K de drone (proa a popa) + Fotografía de interiores en plano detalle. <br>Por qué: Es el tope de gama; necesita transmitir amplitud y lujo absoluto.</p>
-                    <div class="asset-tag">🎞️ Vídeo Hero</div>
-                    <div class="asset-tag">📸 Galería Interior</div>
+                    <p>Uso de vídeo cinemático para mostrar el buque insignia. Material: Dron + Detail shots de cabina premium.</p>
                 </div>
-
                 <div class="fleet-card">
-                    <span class="meta">PÁGINAS 4-5</span>
+                    <span class="meta">PÁGINAS 4-5 | RECURSO: ACCIÓN</span>
                     <h3>EOLO 7.9</h3>
-                    <p class="asset-desc"><strong>Recurso:</strong> Fotografía de acción (navegación rápida) + Despiece visual de soláriums. <br>Por qué: El cliente busca polivalencia y velocidad; el material visual debe ser dinámico.</p>
-                    <div class="asset-tag">🎞️ B-Roll Navegación</div>
+                    <p>Fotografía de alta velocidad. Se requiere material que demuestre la navegación deportiva y los soláriums.</p>
                 </div>
-
                 <div class="fleet-card">
-                    <span class="meta">PÁGINAS 6-7</span>
+                    <span class="meta">PÁGINAS 6-7 | RECURSO: 360º</span>
                     <h3>EOLO 6.9 EL</h3>
-                    <p class="asset-desc"><strong>Recurso:</strong> Galería 360º de cubierta + Infografía técnica de plataformas. <br>Por qué: En este metraje prima la habitabilidad; el usuario debe "sentirse" a bordo.</p>
-                    <div class="asset-tag">📸 Fotografía 360</div>
+                    <p>Enfoque en habitabilidad. Foto-galería de las plataformas de popa y la versatilidad de los 7 metros.</p>
                 </div>
             </div>
 
             <div class="fleet-grid">
                 <div class="fleet-card">
-                    <span class="meta">PÁGINAS 8-9</span>
+                    <span class="meta">PÁGINAS 8-9 | RECURSO: TOUR</span>
                     <h3>EOLO 6.4 EL</h3>
-                    <p class="asset-desc"><strong>Recurso:</strong> Vídeo "Walkthrough" de cabina + Foto de detalle de acabados. <br>Por qué: Al tener cabina en 6.4m, el material debe probar que el espacio es funcional y real.</p>
-                    <div class="asset-tag">🎞️ Vídeo Tour</div>
+                    <p>Vídeo explicativo de la cabina. Material necesario para demostrar el confort en un crucero compacto.</p>
                 </div>
-
                 <div class="fleet-card">
-                    <span class="meta">PÁGINAS 10-11</span>
+                    <span class="meta">PÁGINAS 10-11 | RECURSO: LIFESTYLE</span>
                     <h3>EOLO 6.4 OPEN</h3>
-                    <p class="asset-desc"><strong>Recurso:</strong> Fotografía cenital de solárium proa + Clips cortos de uso diurno. <br>Por qué: Enfoque 100% lúdico; el material visual debe evocar sol y relax.</p>
-                    <div class="asset-tag">📸 Foto Cenital</div>
+                    <p>Fotografías cenitales del solárium de proa. El material debe evocar el uso diurno y recreativo.</p>
                 </div>
-
                 <div class="fleet-card">
-                    <span class="meta">PÁGINAS 12-13</span>
+                    <span class="meta">PÁGINAS 12-13 | RECURSO: MANIOBRA</span>
                     <h3>AS MARINE 19 GL</h3>
-                    <p class="asset-desc"><strong>Recurso:</strong> Galería de personalización de colores + Vídeo de maniobrabilidad. <br>Por qué: Destaca su agilidad; el vídeo debe mostrar lo fácil que es navegarla.</p>
-                    <div class="asset-tag">🎞️ Clip Maniobra</div>
+                    <p>Clips cortos de maniobrabilidad y personalización de colores. Enfoque en público joven y dinámico.</p>
                 </div>
             </div>
         </section>
 
         <footer class="block">
-            <h2 style="font-size: 3rem; margin-bottom: 40px;">¿Avanzamos al futuro?</h2>
-            <a href="#" class="cta-premium">APROBAR PROPUESTA 2026</a>
-            <div style="margin-top: 60px; opacity: 0.4;">
-                <p>Digital Excellence for Sea Moments & EOLO</p>
-                <p style="font-size: 0.8rem;">Retícula de 12 columnas | Tipografía High-Contrast | Renderizado 60fps</p>
+            <a href="#" class="cta-btn">APROBAR ECOSISTEMA DIGITAL</a>
+            <div style="margin-top: 40px; color: var(--text-dim);">
+                <p>Propuesta válida para la temporada 2026. Basado en el sistema de diseño Sea Moments.</p>
             </div>
         </footer>
     </div>
 
     <script>
-        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.block').forEach(block => observer.observe(block));
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.block').forEach(b => observer.observe(b));
     </script>
 </body>
 </html>
