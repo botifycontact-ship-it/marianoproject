@@ -3,314 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecosistema Comercial Seamoments – EOLO</title>
+    <title>Propuesta Digital y Editorial — Sea Moments & EOLO</title>
     <style>
         /* =========================================================
-           HOME PAGE — DESIGN SYSTEM (CSS ONLY)
-           Placeholder-ready | Reusable | Dark Neon Interface
+           DESIGN SYSTEM — SEA MOMENTS & EOLO
            ========================================================= */
-
-        /* -------------------------
-           RESET & BASE
-        -------------------------- */
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
-
-        html,
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; scroll-behavior: smooth; }
         body {
-          height: 100%;
-          scroll-behavior: smooth;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-          background: #000000;
-          color: #ffffff;
-          overflow-x: hidden;
-        }
-
-        /* -------------------------
-           GRID BACKGROUND
-        -------------------------- */
+        /* GRID BACKGROUND */
         .grid-background {
-          position: fixed;
-          inset: 0;
-          background-image:
-            linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
-          background-size: 50px 50px;
-          animation: gridMove 20s linear infinite;
-          pointer-events: none;
-          z-index: 0;
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: 0;
         }
-
         @keyframes gridMove {
-          from { transform: translate(0, 0); }
-          to   { transform: translate(50px, 50px); }
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 50px); }
         }
 
-        /* -------------------------
-           LAYOUT
-        -------------------------- */
-        .container {
-          position: relative;
-          z-index: 1;
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 0 40px;
-        }
-
+        /* LAYOUT */
+        .container { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
         .block {
-          min-height: 100vh;
-          padding: 80px 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          opacity: 0;
-          transform: translateY(40px);
-          transition: opacity 0.8s ease, transform 0.8s ease;
+            min-height: 100vh;
+            padding: 100px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .block.visible { opacity: 1; transform: translateY(0); }
 
-        .block.visible {
-          opacity: 1;
-          transform: translateY(0);
+        /* LOGO & HERO */
+        .hero { text-align: center; }
+        .logo-container {
+            width: 200px; 
+            height: auto; 
+            margin: 0 auto 30px;
+            animation: float 4s ease-in-out infinite;
         }
-
-        /* -------------------------
-           HERO
-        -------------------------- */
-        .hero {
-          text-align: center;
-          align-items: center;
+        .logo-container img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.3));
         }
+        
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
-        .logo {
-          width: 168px;
-          height: 168px;
-          margin: 0 auto 40px;
-          animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50%      { transform: translateY(-20px); }
-        }
-
-        .logo-circle {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          background: #ffffff;
-          box-shadow: 0 0 40px rgba(0, 255, 65, 0.6);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 8px;
-          animation: pulse 2s ease-in-out infinite;
-        }
-
-        /* Simulación de logo con texto para el ejemplo */
-        .logo-circle span {
-            color: #000;
-            font-weight: 900;
-            font-size: 24px;
-        }
-
-        @keyframes pulse {
-          0%, 100% { box-shadow: 0 0 40px rgba(0, 255, 65, 0.6); }
-          50%      { box-shadow: 0 0 60px rgba(0, 255, 65, 0.9); }
-        }
-
-        .hero h1 {
-          font-size: 56px;
-          font-weight: bold;
-          line-height: 1.2;
-          margin-bottom: 20px;
-          text-transform: uppercase;
-          letter-spacing: -1px;
-        }
-
-        .hero .subtitle {
-          font-size: 24px;
-          color: #b0b0b0;
-          max-width: 800px;
-          margin: 0 auto 30px;
-        }
-
-        .hero .tagline {
-          font-size: 32px;
-          color: #00ff41;
-          margin-bottom: 50px;
-          animation: neonPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes neonPulse {
-          0%, 100% { text-shadow: 0 0 10px rgba(0, 255, 65, 0.5); }
-          50%      { text-shadow: 0 0 20px rgba(0, 255, 65, 0.8); }
-        }
-
-        .cta-button {
-          display: inline-block;
-          padding: 18px 40px;
-          background: #00ff41;
-          color: #000000;
-          text-decoration: none;
-          font-weight: bold;
-          font-size: 18px;
-          border-radius: 8px;
-          box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
-          transition: all 0.3s ease;
-          border: none;
-          cursor: pointer;
-        }
-
-        .cta-button:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 0 30px rgba(0, 255, 65, 0.7);
-        }
-
-        /* -------------------------
-           CARDS / GRIDS (GENERIC)
-        -------------------------- */
-        .grid {
-          display: grid;
-          gap: 30px;
-          margin-top: 40px;
-        }
-
-        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
-        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+        .tagline { color: #00ff41; font-size: 1.5rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+        
+        /* PRICING CARDS */
+        .grid-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 50px; }
+        
         .card {
-          padding: 40px;
-          background: rgba(255, 255, 255, 0.02);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          border-radius: 12px;
-          transition: all 0.3s ease;
-          display: flex;
-          flex-direction: column;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
         }
-
         .card:hover {
-          border-color: #00ff41;
-          background: rgba(0, 255, 65, 0.05);
-          transform: translateY(-5px);
-          box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
+            border-color: #00ff41;
+            background: rgba(0, 255, 65, 0.04);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 255, 65, 0.1);
         }
+        .card.featured { border: 2px solid #00ff41; background: rgba(0, 255, 65, 0.05); }
 
-        .card .badge {
-            color: #00ff41;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+        .opt-number { color: #00ff41; font-weight: 800; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        .card h3 { font-size: 1.8rem; margin-bottom: 20px; }
+        .card ul { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+        .card li { margin-bottom: 12px; color: #ccc; font-size: 0.95rem; display: flex; align-items: flex-start; }
+        .card li::before { content: "→"; color: #00ff41; margin-right: 10px; font-weight: bold; }
+
+        .price-tag { font-size: 2.5rem; font-weight: 800; color: #fff; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; }
+        .price-tag span { font-size: 1rem; color: #00ff41; }
+
+        /* FEATURES SECTION */
+        .feature-item { margin-bottom: 40px; }
+        .feature-item h4 { color: #00ff41; font-size: 1.4rem; margin-bottom: 15px; display: flex; align-items: center; }
+        .feature-item h4::after { content: ""; height: 1px; flex-grow: 1; background: linear-gradient(90deg, #00ff41, transparent); margin-left: 20px; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+
+        /* FOOTER */
+        footer { text-align: center; padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.1); }
+        .cta-main {
+            display: inline-block; padding: 20px 50px; background: #00ff41; color: #000;
+            text-decoration: none; font-weight: 800; border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 255, 65, 0.3); transition: 0.3s;
         }
+        .cta-main:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(0, 255, 65, 0.5); }
 
-        .card h3 {
-          color: #ffffff;
-          font-size: 28px;
-          margin-bottom: 15px;
-        }
-
-        .card .price {
-            font-size: 32px;
-            color: #00ff41;
-            font-weight: bold;
-            margin-top: auto;
-            padding-top: 20px;
-        }
-
-        .card p, .card li {
-          color: #b0b0b0;
-          line-height: 1.6;
-          list-style: none;
-          margin-bottom: 8px;
-        }
-
-        .card ul {
-            margin: 20px 0;
-        }
-
-        .card li::before {
-            content: "—";
-            color: #00ff41;
-            margin-right: 10px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        /* -------------------------
-           FOOTER
-        -------------------------- */
-        .footer {
-          text-align: center;
-          padding: 60px 0 40px;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-logo {
-          width: 112px;
-          height: 112px;
-          margin: 0 auto 30px;
-          animation: float 3s ease-in-out infinite;
-        }
-
-        .footer-logo-circle {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          background: #ffffff;
-          box-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 6px;
-        }
-
-        .footer-links {
-          display: flex;
-          justify-content: center;
-          gap: 30px;
-          margin-bottom: 30px;
-          flex-wrap: wrap;
-        }
-
-        .footer-link {
-          color: #b0b0b0;
-          text-decoration: none;
-          transition: color 0.3s ease;
-        }
-
-        .footer-link:hover {
-          color: #00ff41;
-        }
-
-        .footer-note {
-          color: #00ff41;
-          font-style: italic;
-        }
-
-        /* -------------------------
-           RESPONSIVE
-        -------------------------- */
         @media (max-width: 768px) {
-          .container { padding: 0 20px; }
-          .hero h1 { font-size: 32px; }
-          .hero .subtitle { font-size: 16px; }
-          .hero .tagline { font-size: 22px; }
-          .section-title { font-size: 28px; }
-        }
-
-        @media (max-width: 480px) {
-          .hero h1 { font-size: 28px; }
-          .cta-button { font-size: 16px; padding: 15px 30px; }
+            h1 { font-size: 2.5rem; }
+            .grid-options { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -319,108 +124,101 @@
     <div class="grid-background"></div>
 
     <div class="container">
-        <section class="block hero visible" id="home">
-            <div class="logo">
-                <div class="logo-circle">
-                    <span>EOLO</span>
-                </div>
+        <section class="block hero visible">
+            <div class="logo-container">
+                <img src="https://res.cloudinary.com/dxhef6dju/image/upload/v1755725396/ChatGPT_Image_Apr_16_2025_12_31_00_AM_pbed1s.png" alt="Sea Moments Logo">
             </div>
-            <h1>Ecosistema Comercial<br>Seamoments – EOLO</h1>
-            <p class="subtitle">Propuesta estratégica de diseño y conversión para la marca líder en navegación.</p>
-            <p class="tagline">Impulsando la Venta Náutica</p>
-            <a href="#presupuesto" class="cta-button">Ver Presupuesto</a>
+            <p class="tagline">Propuesta Digital y Editorial</p>
+            <h1>Sea Moments & EOLO:<br>El Próximo Nivel.</h1>
+            <p style="color: #888; max-width: 600px; margin: 20px auto;">Ecosistemas diseñados para convertir visitas en ventas mediante experiencias visuales de alto impacto.</p>
         </section>
 
-        <section class="block" id="presupuesto">
-            <h2 class="section-title">Opciones de Inversión</h2>
-            <div class="grid grid-3">
+        <section class="block" id="options">
+            <div class="grid-options">
                 <div class="card">
-                    <span class="badge">🥇 Opción 1</span>
+                    <span class="opt-number">🥇 OPCIÓN 1</span>
                     <h3>Catálogo Físico Profesional</h3>
                     <ul>
-                        <li>Diseño editorial premium 16:9</li>
-                        <li>6 modelos (2 páginas c/u)</li>
-                        <li>QR individual por barco</li>
+                        <li>Formato 16:9 Editorial Premium</li>
+                        <li>6 modelos con fichas técnicas</li>
+                        <li>Códigos QR individuales por barco</li>
                         <li>Versión Español + Inglés</li>
-                        <li>Exportación PDF 300 DPI</li>
+                        <li>PDF 300 DPI listo para imprenta</li>
                     </ul>
-                    <div class="price">650 €</div>
+                    <div class="price-tag">650<span> €</span></div>
                 </div>
 
-                <div class="card" style="border-color: #00ff41; background: rgba(0, 255, 65, 0.03);">
-                    <span class="badge">🥈 Opción 2</span>
+                <div class="card featured">
+                    <span class="opt-number">🥈 OPCIÓN 2</span>
                     <h3>Catálogo + Interfaz Digital</h3>
-                    <p>Incluye Opción 1 más:</p>
                     <ul>
-                        <li>Ecosistema de Conversión</li>
-                        <li>Experiencia visual avanzada</li>
-                        <li>Multidioma (5-6 idiomas)</li>
-                        <li>Captura automática de leads</li>
+                        <li><strong>Todo lo de la Opción 1</strong></li>
+                        <li>Interfaz de Conversión Avanzada</li>
+                        <li>Experiencia Multidioma (5-6 idiomas)</li>
+                        <li>Galerías dinámicas ampliadas</li>
+                        <li>Sistema de captura de leads</li>
                     </ul>
-                    <div class="price">900 €</div>
+                    <div class="price-tag">900<span> €</span></div>
                 </div>
 
                 <div class="card">
-                    <span class="badge">🥉 Opción 3</span>
+                    <span class="opt-number">🥉 OPCIÓN 3</span>
                     <h3>Ecosistema + Bot Feria</h3>
-                    <p>Incluye Opción 2 más:</p>
                     <ul>
-                        <li>Bot Inteligente (5 días feria)</li>
-                        <li>WhatsApp / Burbuja Web</li>
-                        <li>Envío automático fichas técnicas</li>
-                        <li>Atención 24/7 evento</li>
+                        <li><strong>Todo lo de la Opción 2</strong></li>
+                        <li>Bot Inteligente (5 días de Feria)</li>
+                        <li>Integración WhatsApp / Web</li>
+                        <li>Envío automático de fichas</li>
+                        <li>Atención 24/7 y gestión de leads</li>
                     </ul>
-                    <div class="price">1.300 €</div>
+                    <div class="price-tag">1.300<span> €</span></div>
                 </div>
             </div>
         </section>
 
-        <section class="block" id="detalles">
-            <h2 class="section-title">Objetivo del Ecosistema</h2>
-            <div class="grid grid-2">
-                <div class="card">
-                    <h3>Estrategia Digital</h3>
-                    <p>No es solo una página web. Es una plataforma digital estratégica diseñada para maximizar la conversión y reforzar el valor del producto EOLO.</p>
+        <section class="block">
+            <h2 style="margin-bottom: 50px;">Ecosistema de Conversión</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>Resolución de Dudas</h4>
+                    <p style="color: #aaa;">FAQ estratégica, detalles técnicos extendidos y comparativas visuales para eliminar fricciones de compra.</p>
                 </div>
-                <div class="card">
-                    <h3>Conexión Directa</h3>
-                    <p>Botones de contacto visibles, integración con chatbot y reenvío inmediato al equipo oficial de Sea Moments para no perder ninguna oportunidad.</p>
+                <div class="feature-item">
+                    <h4>Experiencia Visual</h4>
+                    <p style="color: #aaa;">Animaciones fluidas y transiciones premium que refuerzan la percepción de marca de Sea Moments.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Acción Directa</h4>
+                    <p style="color: #aaa;">Botones de contacto y reenvío inmediato al número oficial. Un sistema diseñado para capturar y convertir.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Bot Feria (Opción 3)</h4>
+                    <p style="color: #aaa;">Atención total 24/7 durante el evento. Respuestas automáticas por modelo y captura de datos instantánea.</p>
                 </div>
             </div>
         </section>
 
-        <footer class="footer">
-            <div class="footer-logo">
-                <div class="footer-logo-circle">
-                    <span style="color:#000; font-weight: bold;">SM</span>
-                </div>
+        <footer>
+            <div class="logo-container" style="width: 120px; opacity: 0.6;">
+                <img src="https://res.cloudinary.com/dxhef6dju/image/upload/v1755725396/ChatGPT_Image_Apr_16_2025_12_31_00_AM_pbed1s.png" alt="Sea Moments Logo Footer">
             </div>
-            <div class="footer-links">
-                <a href="#" class="footer-link">Propuesta 2024</a>
-                <a href="#" class="footer-link">Condiciones</a>
-                <a href="#" class="footer-link">Contacto Directo</a>
-            </div>
-            <p class="footer-note">Potenciando la venta del barco EOLO a través de Sea Moments</p>
+            <h2 style="margin-bottom: 30px;">¿Listo para transformar la presencia de EOLO?</h2>
+            <a href="#" class="cta-main">SOLICITAR IMPLEMENTACIÓN</a>
+            <p style="margin-top: 40px; color: #555; font-style: italic;">Potenciando la venta del barco EOLO a través de Sea Moments</p>
         </footer>
     </div>
 
     <script>
-        // Lógica simple para revelar bloques al hacer scroll
         const blocks = document.querySelectorAll('.block');
-        
-        const revealOnScroll = () => {
-            blocks.forEach(block => {
-                const blockTop = block.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (blockTop < windowHeight * 0.85) {
-                    block.classList.add('visible');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
             });
-        };
+        }, { threshold: 0.15 });
 
-        window.addEventListener('scroll', revealOnScroll);
-        // Ejecutar una vez al cargar
-        revealOnScroll();
+        blocks.forEach(block => observer.observe(block));
     </script>
 </body>
 </html>
